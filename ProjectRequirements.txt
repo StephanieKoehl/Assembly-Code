@@ -1,0 +1,77 @@
+Instructions given
+
+What should fproj.asm do:
+
+1.    It defines an integer array of length 8, its name is up to you, but here we will call it array , and the skeleton program fproj_skel.asm also uses the name array .
+2.    The array array is randomly initialized to the values from 1..8 by the call to rperm , see the skeleton program fproj_skel.asm .
+3.    Then in an infinite loop, array is displayed on the screen by a subroutine display .
+4.    At the bottom of the screen the user is prompted to either enter a pair of values i and j from the range 1..8, or 0.
+       i.  If 0 is entered, the loop is terminated, and then the program terminates.
+       ii. If a pair of values i and j is entered, then in array the item containing the value i is swapped with the item containing the value j , and the loop is repeated.
+5.    The subroutine display has two parameters passed on the stack, one is the address of the array array , and the other is the size of the array, in this case 8. You cannot hard code in the subroutine display the address of the array, nor the size.
+6.    The subroutine display traverses the array and displays the value in each item of the array in a form of a box, for better understanding see the execution of fproj.py . It also must display the numeric value of the box underneath.
+    The box of size 1 looks like this
+    +
+    The box of size 2 looks like this
+    ++
+    ++
+    The box of size 3 looks like this
+    +-+
+    + +
+    +-+
+    The box of size 4 looks like this
+    +--+
+    +  +
+    +  +
+    +--+
+    The box of size 5 looks like this
+    +---+
+    +   +
+    +   +
+    +   +
+    +---+
+    etc. ....
+    The box of size 8 looks like this
+    +------+
+    +      +
+    +      +
+    +      +
+    +      +
+    +      +
+    +      +
+    +------+
+    The boxes are displayed adjusted to the same level at the bottom, side by side. Thus, the subroutine display must display it from top to the bottom, one line at a time. So, display must loop n-times, where n is the length of the input array. In this loop, it must prepare a line, and then displays it -- i.e. n lines from top to bottom. For each line, it must figure out what to put in the line for each item of the array, i.e. must loop n-times for each item of the array. For instance:
+
+
+
+                                                                  +------+          
+                                                                  +      +  +-----+ 
+                                     +----+                       +      +  +     + 
+                           +---+     +    +                       +      +  +     + 
+        +--+               +   +     +    +                       +      +  +     + 
+        +  +               +   +     +    +     +-+               +      +  +     + 
+        +  +       ++      +   +     +    +     + +               +      +  +     + 
+    ....+--+.......++......+---+.....+----+.....+-+........+......+------+..+-----+.
+         4         2         5         6         3         1         8         7    
+
+
+    The first line will be (~signifies a space):
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+------+
+
+
+    The second line will be
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+~~~~~~+~~+------+
+
+
+    etc.
+    Your subroutine display may call other subroutines, similarly as done in the python version of the program, fproj.py
+
+Instructions for included files (in zip repo):
+    Download simple_io.inc and save it on your workstation. This file is necessary.
+    Download simple_io.asm and save it on your workstation. This file is necessary.
+    Download driver.c and save it on your workstation. This file is necessary. Note, that this is a different driver.c than the one we used in the labs.
+    Download fproj.py and save it on your workstation. This is a python version of the program you are to write in NASM assembler. You can execute it by python3 fproj.py to gain a better understanding of how the program should behave.
+    Download fproj_skel.asm and save it on your workstation. This is a skeleton file for fproj.asm . It contains to code for the random initialization of the array array .
+    Download makefile from the sample NASM programs and save it on your workstation. Then modify the file makefile for a proper compilation and linking of fproj.asm . This file is not necessary, you may create it from scratch.
